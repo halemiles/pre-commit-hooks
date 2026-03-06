@@ -1,0 +1,3 @@
+[console_scripts]
+fix-yaml-comment-spacing = hooks.fix_yaml_comment_spacing:main
+fix-yaml-document-start = hooks.fix_yaml_document_start:main

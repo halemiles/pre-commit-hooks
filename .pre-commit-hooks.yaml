@@ -1,0 +1,15 @@
+- id: fix-yaml-document-start
+  name: Fix YAML Document Start
+  description: Adds the '---' document start marker at the beginning of YAML files if it is missing.
+  entry: fix-yaml-document-start
+  language: python
+  types: [yaml]
+
+- id: fix-yaml-comment-spacing
+  name: Fix YAML Comment Spacing
+  description: >
+    Ensures YAML comments have a single space after '#' and that inline comments
+    are preceded by at least two spaces, resolving yamllint comment-spacing warnings.
+  entry: fix-yaml-comment-spacing
+  language: python
+  types: [yaml]
