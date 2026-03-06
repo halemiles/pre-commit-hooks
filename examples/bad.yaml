@@ -1,0 +1,20 @@
+# This file intentionally contains YAML issues that the hooks will fix.
+# Run "pre-commit run --all-files" to see both hooks in action.
+#
+# Issues in this file:
+#   1. Missing document-start marker (no "---" at the top)
+#   2. Inline comments with fewer than two spaces before the hash sign
+#   3. Comments missing a space after the hash sign
+
+app:
+  name: my-service
+  version: "1.0.0" # only one space before this comment (needs two)
+
+database:
+  host: localhost #no space after hash
+  port: 5432
+  name: mydb #also missing space after hash
+
+server:
+  workers: 4
+  timeout: 30 #bad: one space before comment AND no space after hash
