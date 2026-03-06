@@ -22,6 +22,36 @@ Ensures YAML comments comply with yamllint's `comments` rule by:
 
 **Fixes yamllint rule:** `comments` (`min-spaces-after: 1`, `min-spaces-from-content: 2`)
 
+### `check-csharp-xml-comments`
+
+Checks that every member declared inside a C# `interface` block has an XML
+documentation comment (`/// <summary>…</summary>`).  The hook fails (exits
+non-zero) for each member that is missing an XML doc comment, printing the
+file name, line number, and the offending member signature.
+
+**Example – good (will pass):**
+
+```csharp
+public interface IUserService
+{
+    /// <summary>
+    /// Checks whether the supplied user ID is valid.
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    bool CheckUserId(int userId);
+}
+```
+
+**Example – bad (will fail):**
+
+```csharp
+public interface IUserService
+{
+    bool CheckUserId(int userId);  // ← missing XML doc comment
+}
+```
+
 ## Usage
 
 Add the following to your `.pre-commit-config.yaml`:
@@ -33,6 +63,7 @@ repos:
     hooks:
       - id: fix-yaml-document-start
       - id: fix-yaml-comment-spacing
+      - id: check-csharp-xml-comments
 ```
 
 Run the hooks against staged files:
