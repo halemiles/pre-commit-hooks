@@ -41,6 +41,60 @@ Run the hooks against staged files:
 pre-commit run --all-files
 ```
 
+## Integration Testing
+
+The `examples/` directory contains two YAML files you can use to see the hooks
+in action immediately:
+
+| File | Description |
+|------|-------------|
+| `examples/bad.yaml` | Missing `---` marker **and** bad comment spacing — the hooks will fix both issues |
+| `examples/good.yaml` | Already correctly formatted — the hooks will make no changes |
+
+A `.pre-commit-config.yaml` is included in this repository so you can run the
+hooks locally against these example files **without** needing a published
+release.
+
+### Why do I see "Skipped"?
+
+The hooks use `types: [yaml]`, so pre-commit only passes `.yaml` / `.yml`
+files to them.  If your project contains no YAML files the hooks will always
+be reported as **Skipped**.  Use the steps below to verify the hooks are
+working correctly.
+
+### Running the hooks locally
+
+```bash
+# 1. Install pre-commit (if not already installed)
+pip install pre-commit
+
+# 2. Install the hook entry-points from this repo
+pip install -e .
+
+# 3. Run all hooks against every file in the repo
+pre-commit run --all-files
+```
+
+Expected output:
+
+```
+Fix YAML Document Start......Failed
+- hook id: fix-yaml-document-start
+- files were modified by this hook
+
+Fixed document-start marker in: examples/bad.yaml
+
+Fix YAML Comment Spacing......Failed
+- hook id: fix-yaml-comment-spacing
+- files were modified by this hook
+
+Fixed comment spacing in: examples/bad.yaml
+```
+
+> **Note:** "Failed" here means the hooks *modified* a file (which is their
+> job).  Run `pre-commit run --all-files` a **second time** and both hooks
+> will report **Passed**, confirming the fixes are correct.
+
 ## Development
 
 Install in editable mode and run the test suite:

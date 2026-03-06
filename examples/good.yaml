@@ -1,0 +1,16 @@
+---
+# This file is already correctly formatted — the hooks will make no changes.
+# Run "pre-commit run --all-files" to confirm both hooks pass without changes.
+
+app:
+  name: my-service
+  version: "1.0.0"  # two spaces before the hash, one space after
+
+database:
+  host: localhost  # two spaces before, space after hash
+  port: 5432
+  name: mydb  # correct spacing
+
+server:
+  workers: 4
+  timeout: 30  # correct spacing
