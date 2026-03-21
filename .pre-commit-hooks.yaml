@@ -13,3 +13,13 @@
   entry: fix-yaml-comment-spacing
   language: python
   types: [yaml]
+
+- id: check-csharp-xml-comments
+  name: Check C# XML Comments on Interface Members
+  description: >
+    Checks that every member declared inside a C# interface has an XML
+    documentation comment (/// <summary>…</summary>). Fails if any member
+    is missing such a comment.
+  entry: check-csharp-xml-comments
+  language: python
+  files: \.cs$
